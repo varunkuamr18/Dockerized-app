@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockerized-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dockerized-app
+  template:
+    metadata:
+      labels:
+        app: dockerized-app
+    spec:
+      containers:
+      - name: dockerized-app
+        image: your-dockerhub-username/dockerized-app:latest
+        ports:
+        - containerPort: 3000
+
