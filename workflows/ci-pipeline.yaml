@@ -1,0 +1,26 @@
+name: CI Pipeline  # Give your workflow a name
+
+on:
+  push:            # Trigger the workflow when:
+    branches:       # Code is pushed to the "main" branch.
+      - main       
+
+jobs:               # Define tasks (jobs) to perform
+  build-and-test:   # Name of the task
+    runs-on: ubuntu-latest   # Use a virtual machine running Ubuntu
+
+    steps:          # List the steps for the task
+    - name: Checkout Code
+      uses: actions/checkout@v3   # Fetch the code from GitHub
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16          # Install Node.js version 16
+
+    - name: Install Dependencies
+      run: npm install            # Install dependencies using npm
+
+    - name: Run Tests
+      run: npm test               # Run your tests
+
